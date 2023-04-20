@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
+import NavbarComponent from '../../components/navbar';
+
 const PageContainer = styled.div`
   ${tw`
     flex
@@ -13,8 +15,12 @@ const PageContainer = styled.div`
     `}
 `;
 
-const HomePageComponent = () => {
-  return <PageContainer>Home page component</PageContainer>;
+const HomePage = () => {
+  return (
+    <PageContainer>
+      <NavbarComponent />
+    </PageContainer>
+  );
 };
 
-export default HomePageComponent;
+export default HomePage;
