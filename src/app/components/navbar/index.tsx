@@ -24,7 +24,7 @@ const NavbarContainer = styled.div`
 
 const LogoContainer = styled.div``;
 
-const NavbarComponent = () => {
+const Navbar = () => {
   return (
     <NavbarContainer>
       <LogoContainer>
@@ -36,4 +36,4 @@ const NavbarComponent = () => {
   );
 };
 
-export default NavbarComponent;
+export default Navbar;
