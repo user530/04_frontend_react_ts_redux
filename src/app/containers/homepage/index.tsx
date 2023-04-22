@@ -4,6 +4,7 @@ import tw from 'twin.macro';
 
 import Navbar from '../../components/navbar';
 import TopSection from './topSection';
+import BookingCard from '../../components/bookingCard';
 
 const PageContainer = styled.div`
   ${tw`
@@ -22,6 +23,7 @@ const HomePage = () => {
     <PageContainer>
       <Navbar />
       <TopSection />
+      <BookingCard />
     </PageContainer>
   );
 };
