@@ -1,7 +1,10 @@
 import React from 'react';
 import { BsCalendar3 } from 'react-icons/bs';
+import { VscTriangleDown, VscTriangleUp } from 'react-icons/vsc';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
 
 import Marginer from '../marginer';
 import Button from '../button';
@@ -33,6 +36,7 @@ md:pr-6
 const ItemContainer = styled.div`
   ${tw`
     flex
+    relative
     `}
 `;
 
@@ -47,11 +51,23 @@ const Icon = styled.span`
     `}
 `;
 
+const CalendarToggleIcon = styled.span`
+  ${tw`
+    text-gray-700
+    fill-current
+    text-xs
+    ml-2
+    md:text-base
+    `}
+`;
+
 const Name = styled.span`
   ${tw`
     text-gray-600
     text-xs
     md:text-sm
+    cursor-pointer
+    select-none
     `}
 `;
 
@@ -67,21 +83,62 @@ const LineSeparator = styled.span`
     `}
 `;
 
+const DateCalendar = styled(Calendar)`
+  position: absolute;
+  max-width: none;
+  top: 3em;
+  left: -1.5em;
+`;
+
 const BookingCard = () => {
+  const [startDate, setStartDate] = React.useState<Date>(new Date());
+  const [isStartCalendarOpen, setStartCalendarOpen] =
+    React.useState<boolean>(false);
+
+  const [returntDate, setReturnDate] = React.useState<Date>(new Date());
+  const [isReturnCalendarOpen, setReturnCalendarOpen] =
+    React.useState<boolean>(false);
+
+  const toggleStartDateCalendar = () => {
+    if (isReturnCalendarOpen) setReturnCalendarOpen(false);
+    setStartCalendarOpen((prevState: boolean) => !prevState);
+  };
+
+  const toggleReturnDateCalendar = () => {
+    if (isStartCalendarOpen) setStartCalendarOpen(false);
+    setReturnCalendarOpen((prevState: boolean) => !prevState);
+  };
+
   return (
     <CardContainer>
       <ItemContainer>
         <Icon>
           <BsCalendar3 />
         </Icon>
-        <Name>Pick Up Date:</Name>
+        <Name onClick={toggleStartDateCalendar}>Pick Up Date</Name>
+
+        <CalendarToggleIcon>
+          {isStartCalendarOpen ? <VscTriangleUp /> : <VscTriangleDown />}
+        </CalendarToggleIcon>
+
+        {isStartCalendarOpen ? (
+          <DateCalendar value={startDate} onChange={setStartDate as any} />
+        ) : null}
       </ItemContainer>
       <LineSeparator />
       <ItemContainer>
         <Icon>
           <BsCalendar3 />
         </Icon>
-        <Name>Return Date:</Name>
+        <Name onClick={toggleReturnDateCalendar}>Return Date</Name>
+
+        <CalendarToggleIcon>
+          {isReturnCalendarOpen ? <VscTriangleUp /> : <VscTriangleDown />}
+        </CalendarToggleIcon>
+
+        {isReturnCalendarOpen ? (
+          <DateCalendar value={returntDate} onChange={setReturnDate as any} />
+        ) : null}
       </ItemContainer>
 
       <Marginer direction="horizontal" margin="2em" />

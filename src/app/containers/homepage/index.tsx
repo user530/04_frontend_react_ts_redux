@@ -13,8 +13,8 @@ const PageContainer = styled.div`
     w-full
     h-full
     items-center
-    overflow-hidden
     relative
+    overflow-x-hidden
     `}
 `;
 

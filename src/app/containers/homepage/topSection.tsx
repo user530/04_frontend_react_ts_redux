@@ -41,10 +41,6 @@ const RightContainer = styled.div`
     flex-col
     relative
     mt-20
-    absolute
-    right-0
-    top-0
-    bottom-0
     `}
 `;
 
