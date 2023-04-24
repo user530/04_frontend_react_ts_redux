@@ -47,7 +47,7 @@ const RightContainer = styled.div`
 const Slogan = styled.h1`
   ${tw`
     font-bold
-    text-2xl
+    text-5xl
     xl:text-6xl
     sm:text-3xl
     md:text-5xl
@@ -158,7 +158,7 @@ const TopSection = () => {
   return (
     <TopSectionContainer>
       <LeftContainer>
-        <Slogan>Get yourself purrfect companion!</Slogan>
+        <Slogan>Get yourself a purrfect companion!</Slogan>
 
         <Description>
           “In ancient times cats were worshipped as gods; they have not
