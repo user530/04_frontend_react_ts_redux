@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { SCREENS } from '../../components/responsive';
 
-import catImg from '../../../assets/images/cat_play2.png';
+import catImg from '../../../assets/images/cat_play.png';
 
 const AboutUsContainer = styled.div`
   ${tw`
