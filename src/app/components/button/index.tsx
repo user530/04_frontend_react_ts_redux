@@ -2,11 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-interface IButtonProps {
-  theme?: 'filled' | 'outlined';
-  text: string;
-}
-
 const BaseButton = styled.button`
   ${tw`
 pl-5
@@ -50,11 +45,18 @@ const FilledButton = styled(BaseButton)`
 `}
 `;
 
-const Button = (props: IButtonProps) => {
-  const { theme, text } = props;
+interface IButtonProps {
+  theme?: 'filled' | 'outlined';
+  text: string;
+  className?: string;
+}
 
-  if (theme === 'filled') return <FilledButton>{text}</FilledButton>;
-  else return <OutlinedButton>{text}</OutlinedButton>;
+const Button = (props: IButtonProps) => {
+  const { theme, text, className } = props;
+
+  if (theme === 'filled')
+    return <FilledButton className={className}>{text}</FilledButton>;
+  else return <OutlinedButton className={className}>{text}</OutlinedButton>;
 };
 
 export default Button;
