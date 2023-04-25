@@ -10,8 +10,8 @@ import Button from '../button';
 const CatCardContainer = styled.div`
   width: 16.5em;
   max-width: 16.5em;
-  min-height: 25.5em;
-  max-height: 25.5em;
+  min-height: 23.5em;
+  max-height: 23.5em;
   box-shadow: 0 1.3px 17px -2px rgba(0, 0, 0, 0.4);
   ${tw`
     flex
@@ -53,7 +53,8 @@ const PricesContainer = styled.div`
     w-full
     flex
     justify-start
-    mt-3
+    mt-1
+    mb-3
     `}
 `;
 
@@ -95,6 +96,8 @@ const CatDetailsContainer = styled.div`
     flex
     w-full
     justify-between
+    mt-3
+    mb-3
     `}
 `;
 
@@ -118,15 +121,13 @@ const Separator = styled.div`
   ${tw`
     flex
     bg-gray-300
-    mb-2
-    mt-2
     `}
 `;
 
 const RentButton = styled(Button)`
   ${tw`
     min-w-full
-    mt-5
+    mb-2
     `}
 `;
 
@@ -139,7 +140,7 @@ const CatCard = (props: ICatProp) => {
   return (
     <CatCardContainer>
       <CatImage>
-        <img src={imgSrc} alt={`photo-${name}`} />
+        <img src={imgSrc} alt={`cat-${name}`} />
       </CatImage>
 
       <CatName>{name}</CatName>

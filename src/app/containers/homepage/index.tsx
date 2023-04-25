@@ -9,6 +9,7 @@ import BookingSteps from './bookingSteps';
 import Marginer from '../../components/marginer';
 import AboutUs from './aboutUs';
 import Cats from './cats';
+import Footer from '../../components/footer';
 
 const PageContainer = styled.div`
   ${tw`
@@ -34,6 +35,7 @@ const HomePage = () => {
       <AboutUs />
       <Marginer direction="vertical" margin="7em" />
       <Cats />
+      <Footer />
     </PageContainer>
   );
 };

@@ -18,7 +18,9 @@ const LogoText = styled.div`
     font-bold   
     text-black
     m-1
-  `}
+    `}
+
+  ${({ color }: any) => (color === 'white' ? tw`text-white` : tw`text-black`)}
 `;
 
 const LogoImage = styled.div`
@@ -35,14 +37,20 @@ const LogoImage = styled.div`
   `}
 `;
 
-const Logo = () => {
+interface ILogoProps {
+  color?: 'white' | 'dark';
+}
+
+const Logo = (props: ILogoProps) => {
+  const { color } = props;
+
   return (
     <LogoContainer>
       <LogoImage>
         <img src={logo} alt="logo" />
       </LogoImage>
 
-      <LogoText>Rent a cat</LogoText>
+      <LogoText color={color || 'dark'}>Rent a cat</LogoText>
     </LogoContainer>
   );
 };
