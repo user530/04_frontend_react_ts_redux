@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/client": "^3.7.13",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -12,6 +13,7 @@
     "@types/react": "^18.0.37",
     "@types/react-calendar": "^3.9.0",
     "@types/react-dom": "^18.0.11",
+    "graphql": "^16.6.0",
     "react": "^18.2.0",
     "react-burger-menu": "^3.0.9",
     "react-calendar": "^4.2.1",
@@ -29,7 +31,12 @@
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "schema:download": "npx apollo schema:download --endpoint=http://localhost:9000/graphql ./src/app/graphql/graphql-schema.json",
+    "generate": "graphql-codegen --config codegen.ts",
+    "compile": "npm run generate && tsc",
+    "postinstall": "npm run compile",
+    "watch": "concurrently  --names \"CodeGen,TS,Nodemon\" -c \"bgYellow,bgBlue,bgMagenta\" \"graphql-codegen --watch 'src/**/*.ts'\"  \"tsc -w \" \"nodemon ./dist/index.js \""
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +57,10 @@
     ]
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^3.3.1",
+    "@graphql-codegen/client-preset": "3.0.1",
+    "@graphql-codegen/typescript": "^3.0.4",
+    "@graphql-codegen/typescript-resolvers": "^3.2.1",
     "@types/react-burger-menu": "^2.8.3",
     "@types/styled-components": "^5.1.26",
     "tailwindcss": "^3.3.1"

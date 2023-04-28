@@ -4,6 +4,8 @@ import tw from 'twin.macro';
 import CatCard from '../../components/catCard';
 
 import { cats } from '../../consts/data';
+import catService from '../../services/catService';
+import { Cat } from '../../graphql/graphql';
 
 const CatsContainer = styled.div`
   ${tw`
@@ -38,7 +40,23 @@ const CatsWrapper = styled.div`
 `;
 
 const Cats = () => {
-  const catData = cats;
+  // Placeholder dummy data
+  // const catData = cats;
+
+  const [catData, setCatData] = React.useState<Cat[]>([]);
+
+  const fetchCats = async () => {
+    const cats = await catService.getCats().catch((err) => console.error(err));
+
+    console.log('Fetch cars:', cats);
+
+    return cats as Cat[];
+  };
+
+  React.useEffect(() => {
+    fetchCats();
+    // const data = fetchCats().then((data) => setCatData(data));
+  }, []);
 
   return (
     <CatsContainer>
