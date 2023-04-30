@@ -2,10 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import CatCard from '../../components/catCard';
-
-import { cats } from '../../consts/data';
 import catService from '../../services/catService';
 import { Cat } from '../../graphql/graphql';
+import { Dispatch } from '@reduxjs/toolkit';
+import { setCats } from './homepageSlice';
+import { useDispatch } from 'react-redux';
 
 const CatsContainer = styled.div`
   ${tw`
@@ -39,23 +40,26 @@ const CatsWrapper = styled.div`
     `}
 `;
 
-const Cats = () => {
-  // Placeholder dummy data
-  // const catData = cats;
+// Redux dispatch
+const actionDispatch = (dispatch: Dispatch) => ({
+  setCats: (cats: Cat[]) => dispatch(setCats({ cats })),
+});
 
+const Cats = () => {
   const [catData, setCatData] = React.useState<Cat[]>([]);
+
+  // Redux actions
+  const { setCats } = actionDispatch(useDispatch());
 
   const fetchCats = async () => {
     const cats = await catService.getCats().catch((err) => console.error(err));
 
-    console.log('Fetch cars:', cats);
-
-    return cats as Cat[];
+    // Populate redux store
+    if (cats) setCats(cats);
   };
 
   React.useEffect(() => {
     fetchCats();
-    // const data = fetchCats().then((data) => setCatData(data));
   }, []);
 
   return (

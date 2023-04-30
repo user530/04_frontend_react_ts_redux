@@ -62,7 +62,9 @@
     "@graphql-codegen/typescript": "^3.0.4",
     "@graphql-codegen/typescript-resolvers": "^3.2.1",
     "@types/react-burger-menu": "^2.8.3",
+    "@types/redux-logger": "^3.0.9",
     "@types/styled-components": "^5.1.26",
+    "redux-logger": "^3.0.6",
     "tailwindcss": "^3.3.1"
   }
 }

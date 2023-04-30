@@ -10,7 +10,8 @@ class CatService {
         throw err;
       });
 
-    if (response && response.data) return response.data as Cat[];
+    if (response && response.data?.getAllCats)
+      return response.data.getAllCats as Cat[];
     else return [];
   }
 }
