@@ -20,6 +20,7 @@ export const homePageSlice = createSlice({
 });
 
 export const { setCats } = homePageSlice.actions;
-export const selectCats = (state: RootState) => state.homePage.cats;
+
+export const catsSelector = (state: RootState) => state.homePage.cats;
 
 export default homePageSlice.reducer;

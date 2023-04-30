@@ -10,8 +10,8 @@ import Button from '../button';
 const CatCardContainer = styled.div`
   width: 16.5em;
   max-width: 16.5em;
-  min-height: 23.5em;
-  max-height: 23.5em;
+  min-height: 25em;
+  max-height: 25em;
   box-shadow: 0 1.3px 17px -2px rgba(0, 0, 0, 0.4);
   ${tw`
     flex
