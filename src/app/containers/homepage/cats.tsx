@@ -5,6 +5,7 @@ import CatCard from '../../components/catCard';
 import catService from '../../services/catService';
 import { catsSelector, setCats } from './homepageSlice';
 import { useAppDispatch, useAppSelector } from '../../hooks';
+import MoonLoader from 'react-spinners/MoonLoader';
 
 const CatsContainer = styled.div`
   ${tw`
@@ -38,16 +39,33 @@ const CatsWrapper = styled.div`
     `}
 `;
 
+const LoadingContainer = styled.div`
+  ${tw`
+    w-full
+    flex
+    justify-center
+    items-center
+    text-base
+    text-black
+    mt-5
+`}
+`;
+
 const Cats = () => {
+  const [isLoading, setLoading] = React.useState<boolean>(false);
   const catData = useAppSelector(catsSelector);
 
   const dispatch = useAppDispatch();
 
   const fetchCats = async () => {
+    // Loading
+    setLoading(true);
     const cats = await catService.getCats().catch((err) => console.error(err));
 
     // Populate redux store
     if (cats) dispatch(setCats({ cats }));
+
+    setLoading(false);
   };
 
   React.useEffect(() => {
@@ -57,11 +75,19 @@ const Cats = () => {
   return (
     <CatsContainer>
       <Title>Our lovely employees</Title>
-      <CatsWrapper>
-        {catData.map((cat, ind) => (
-          <CatCard key={ind} {...cat} />
-        ))}
-      </CatsWrapper>
+      {isLoading ? (
+        <LoadingContainer>
+          <MoonLoader loading size={20} />
+        </LoadingContainer>
+      ) : catData.length > 0 ? (
+        <CatsWrapper>
+          {catData.map((cat, ind) => (
+            <CatCard key={ind} {...cat} />
+          ))}
+        </CatsWrapper>
+      ) : (
+        <LoadingContainer>No data to show</LoadingContainer>
+      )}
     </CatsContainer>
   );
 };
